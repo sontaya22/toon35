@@ -1,0 +1,32 @@
+def calculate_bmi(weight_kg, height_cm):
+    # แปลงส่วนสูงจากเซนติเมตรเป็นเมตร
+    height_m = height_cm / 100
+    
+    # คำนวณค่า BMI
+    bmi = weight_kg / (height_m ** 2)
+    
+    # แปลผลค่า BMI (เกณฑ์สำหรับคนเอเชีย/ไทย)
+    if bmi < 18.5:
+        category = "น้ำหนักน้อย / ผอม"
+    elif 18.5 <= bmi < 23.0:
+        category = "ปกติ (สุขภาพดี)"
+    elif 23.0 <= bmi < 25.0:
+        category = "ท้วม / น้ำหนักเกิน"
+    elif 25.0 <= bmi < 30.0:
+        category = "อ้วนระดับ 1"
+    else:
+        category = "อ้วนระดับ 2 (อ้วนมาก)"
+        
+    return bmi, category
+
+# รับค่าจากผู้ใช้
+try:
+    weight = float(input("กรอกน้ำหนัก (กก.): "))
+    height = float(input("กรอกส่วนสูง (ซม.): "))
+
+    bmi_value, result = calculate_bmi(weight, height)
+
+    print(f"\nค่า BMI ของคุณคือ: {bmi_value:.2f}")
+    print(f"ผลการประเมิน: {result}")
+except ValueError:
+    print("กรุณากรอกข้อมูลเป็นตัวเลขเท่านั้น")
